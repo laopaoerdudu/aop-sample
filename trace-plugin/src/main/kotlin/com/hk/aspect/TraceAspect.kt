@@ -1,6 +1,5 @@
-package com.hk
+package com.hk.aspect
 
-import android.util.Log
 import com.hk.internal.StopWatch
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
@@ -37,7 +36,13 @@ class TraceAspect {
                 // Then
                 stopWatch.stop()
 
-                Log.d(className, buildLogMessage(methodName, stopWatch.getTotalTimeMillis()))
+                println(
+                    """
+                    TraceAspect #weaveJoinPoint(...);
+                    className -> $className;
+                    methodName -> $methodName cost (${stopWatch.getTotalTimeMillis()}) ms;
+                """.trimIndent()
+                )
                 return result
             }
         } catch (ex: Exception) {
@@ -50,12 +55,5 @@ class TraceAspect {
         private const val POINTCUT_METHOD = "execution(@com.hk.annotation.DebugTrace * *(..))"
         private const val POINTCUT_CONSTRUCTOR =
             "execution(@com.hk.annotation.DebugTrace *.new(..))"
-
-        private fun buildLogMessage(methodName: String, methodDuration: Long): String {
-            return """
-                TraceAspect -> methodName -> $methodName;
-                Cost -> ( $methodDuration ) ms
-            """.trimIndent()
-        }
     }
 }

@@ -1,0 +1,24 @@
+apply plugin: 'maven'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'org.aspectj:aspectjtools:1.9.8.RC3'
+    implementation 'org.aspectj:aspectjrt:1.9.8.RC3'
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+// 发布到本地 maven
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        repository(url: uri('../repo')) // 也可以给出绝对路径，例如：'/Users/david/study-code/gradle_sample/path'
+//        pom.groupId = 'com.dev.plugin'
+//        pom.artifactId = 'gradleplugin'
+//        pom.version = '1.9.9'
+//    }
+//}
