@@ -4,6 +4,7 @@ apply plugin: 'kotlin'
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
+    implementation "com.android.tools.build:gradle:4.1.1"
     implementation 'org.aspectj:aspectjtools:1.9.8.RC3'
     implementation 'org.aspectj:aspectjrt:1.9.8.RC3'
 }
@@ -13,12 +14,11 @@ repositories {
     mavenCentral()
 }
 
-// 发布到本地 maven
-//uploadArchives {
-//    repositories.mavenDeployer {
-//        repository(url: uri('../repo')) // 也可以给出绝对路径，例如：'/Users/david/study-code/gradle_sample/path'
-//        pom.groupId = 'com.dev.plugin'
-//        pom.artifactId = 'gradleplugin'
-//        pom.version = '1.9.9'
-//    }
-//}
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: uri('../repo'))
+        pom.groupId = 'com.hk'
+        pom.artifactId = 'TracePlugin'
+        pom.version = '1.0.0'
+    }
+}
