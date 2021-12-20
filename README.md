@@ -1,0 +1,5 @@
+
+
+```
+gradlew clean build installDebug
+```
